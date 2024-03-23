@@ -1,0 +1,72 @@
+package PR2.TUT4;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class EX5 {
+	
+	public static int binarytodecimal(int[] bin) {
+		int[] a =new int[bin.length];
+		int j = 0;
+		for(int i = bin.length-1; i>=0;i--) {
+			a[j]=bin[i];
+			j++;
+		}
+		int k =0;
+		for(int i =0; i<a.length; i++) {
+			k+=Math.pow(2,a[i]);
+		}
+		return k;
+	}
+	
+	public static ArrayList<Integer> decimaltobinary(int dec){
+		ArrayList<Integer> a = new ArrayList<>();
+		while (dec>1) {
+		a.add(dec%2);
+		dec/=2;
+		}
+		Collections.reverse(a);
+		return a;
+	}
+	
+	public static int xor(int a, int c) {
+		ArrayList<Integer> abi = decimaltobinary(a); 
+		ArrayList<Integer> cbi = decimaltobinary(c);
+		
+		if (abi.size()>cbi.size()) {
+			for(int i = 0; i<(abi.size()-cbi.size()); i++) {
+				cbi.add(0, 0);
+			}
+		}else if(abi.size()<cbi.size()) {
+			for(int i =0; i<(cbi.size()-abi.size()); i++){
+				abi.add(0,0);
+			}
+		}
+		int[] result = new int[abi.size()]
+		for (int i = 0; i<abi.size();i++) {
+			if(abi.get(i)==0&&abi.get(i)==0) {
+				result[i] = 0;
+			}else if(abi.get(i)==1&&abi.get(i)==1) {
+				result[i]=0;
+			}else {
+				result[i]=1;
+			}
+		}
+		return binarytodecimal(result);
+		
+		
+	}
+	
+	public static void main(String[]args) {
+		System.out.println(xor(3,6));
+		
+
+		
+		
+		
+	}
+	
+	
+	
+}
